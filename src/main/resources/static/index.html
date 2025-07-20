@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>Catálogo de Jogos</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	padding: 20px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 20px;
+}
+
+th, td {
+	border: 1px solid #aaa;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #222;
+	color: white;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+h1 {
+	color: #333;
+}
+</style>
+</head>
+<body>
+	<h1>Catálogo de Jogos</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Título</th>
+				<th>Gênero</th>
+				<th>Plataforma</th>
+				<th>Lançamento</th>
+				<th>Desenvolvedora</th>
+				<th>Preço Atual (R$)</th>
+				<th>Menor Preço (R$)</th>
+			</tr>
+		</thead>
+		<tbody id="tabela-jogos"></tbody>
+	</table>
+
+	<script>
+    fetch("http://localhost:8080/jogos") // ajuste a URL conforme seu backend
+      .then(res => res.json())
+      .then(jogos => {
+        const tabela = document.getElementById("tabela-jogos");
+        jogos.forEach(jogo => {
+        	  const precoAtual = jogo.precoAtual !== null ? jogo.precoAtual.toFixed(2) : "—";
+        	  const precoMaisBaixo = jogo.precoMaisBaixoHistorico !== null ? jogo.precoMaisBaixoHistorico.toFixed(2) : "—";
+
+        	  const row = `
+        	    <tr>
+        	      <td>${jogo.id}</td>
+        	      <td>${jogo.titulo}</td>
+        	      <td>${jogo.genero}</td>
+        	      <td>${jogo.plataforma}</td>
+        	      <td>${jogo.anoLancamento}</td>
+        	      <td>${jogo.desenvolvedora}</td>
+        	      <td>${precoAtual}</td>
+        	      <td>${precoMaisBaixo}</td>
+        	    </tr>`;
+        	  tabela.innerHTML += row;
+        	});
+
+      })
+      .catch(error => console.error("Erro ao carregar jogos:", error));
+  </script>
+
+	<button onclick="atualizarPrecos()">Atualizar preços da Steam</button>
+
+	<script>
+  function atualizarPrecos() {
+    fetch('http://localhost:8080/jogos/atualizar-precos-steam', {
+      method: 'PUT'
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Preços atualizados com sucesso!");
+        location.reload(); // recarrega a página para mostrar os novos valores
+      } else {
+        alert("Erro ao atualizar preços.");
+      }
+    });
+  }
+</script>
+</body>
+</html>
