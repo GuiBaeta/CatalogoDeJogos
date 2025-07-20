@@ -30,6 +30,7 @@ Este projeto tem como objetivo criar um catálogo de jogos, e ser possível moni
 
 ## 🗂️ Estrutura do Projeto
 
+'''
 ├── src/
 │ ├── main/
 │ │ ├── java/
@@ -43,6 +44,7 @@ Este projeto tem como objetivo criar um catálogo de jogos, e ser possível moni
 │ │ ├── static/
 │ │ │ └── index.html
 │ │ └── application.properties
+'''
 
 ---
 
@@ -111,10 +113,10 @@ O menor preço é salvo automaticamente, se for inferior ao anterior.
 ## 🖼️ Capturas de Tela
 
 ### 🎯 Antes da atualização dos preços:
-![Antes da atualização](images/antes-atualizacao.png)
+![Antes da atualização](imagens/antes-atualizacao.png)
 
 ### ✅ Após a atualização dos preços:
-![Após a atualização](images/depois-atualizacao.png)
+![Após a atualização](imagens/depois-atualizacao.png)
 
 ---
 
