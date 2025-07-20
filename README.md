@@ -30,7 +30,7 @@ Este projeto tem como objetivo criar um catálogo de jogos, e ser possível moni
 
 ## 🗂️ Estrutura do Projeto
 
-'''
+```
 ├── src/
 │ ├── main/
 │ │ ├── java/
@@ -44,7 +44,7 @@ Este projeto tem como objetivo criar um catálogo de jogos, e ser possível moni
 │ │ ├── static/
 │ │ │ └── index.html
 │ │ └── application.properties
-'''
+```
 
 ---
 
